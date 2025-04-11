@@ -198,6 +198,30 @@ public class MediaTransferFlvByJavacv extends MediaTransfer implements Runnable 
 			//转码
 			recorder.setInterleaved(false);
 			recorder.setVideoOption("tune", "zerolatency");
+
+
+			// 显式设置音频参数
+			if (grabber.getAudioChannels() > 0) {
+				recorder.setAudioChannels(grabber.getAudioChannels());
+				recorder.setSampleRate(grabber.getSampleRate());
+				recorder.setAudioCodec(avcodec.AV_CODEC_ID_AAC);
+			} else {
+				recorder.setAudioCodec(0); // 无音频时禁用
+			}
+			recorder.setVideoCodec(avcodec.AV_CODEC_ID_H264);
+
+
+//			// 配置音频
+//			if (grabber.getAudioChannels() > 0) {
+//				recorder.setAudioCodec(avcodec.AV_CODEC_ID_AAC);
+//				recorder.setAudioChannels(grabber.getAudioChannels());
+//				recorder.setSampleRate(grabber.getSampleRate());
+//				recorder.setAudioBitrate(192000);
+//			} else {
+//				recorder.setAudioChannels(0); // 禁用音频
+//			}
+
+
 			recorder.setVideoOption("preset", "ultrafast");
 			recorder.setVideoOption("crf", "26");
 			recorder.setVideoOption("threads", "1");
