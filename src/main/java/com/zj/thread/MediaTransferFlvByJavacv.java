@@ -407,6 +407,7 @@ public class MediaTransferFlvByJavacv extends MediaTransfer implements Runnable 
 	private void sendFrameData(byte[] data) {
 		// ws
 		for (Entry<String, ChannelHandlerContext> entry : wsClients.entrySet()) {
+//			log.info("Client ID: {}", entry.getKey());
 			try {
 				if (entry.getValue().channel().isWritable()) {
 					entry.getValue().writeAndFlush(new BinaryWebSocketFrame(Unpooled.copiedBuffer(data)));
@@ -414,6 +415,7 @@ public class MediaTransferFlvByJavacv extends MediaTransfer implements Runnable 
 					wsClients.remove(entry.getKey());
 					hasClient();
 				}
+				Thread.sleep(50); // 每帧之间等待 50ms
 			} catch (java.lang.Exception e) {
 				wsClients.remove(entry.getKey());
 				hasClient();
