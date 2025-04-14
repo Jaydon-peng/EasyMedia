@@ -60,7 +60,8 @@ public class Camera implements Serializable {
 	/**
 	 * 读写超时，默认5秒
 	 */
-	private String readOrWriteTimeout = "15000000";
+//	private String readOrWriteTimeout = "15000000";
+	private String readOrWriteTimeout = "5000000";
 
 	/**
 	 * 无人拉流观看持续多久自动关闭，默认1分钟

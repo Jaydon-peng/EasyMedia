@@ -13,8 +13,7 @@
         "autoClose": false
     },
     {
-        "remark": "旷视1",
-        "readOrWriteTimeout": "15000000",
+        "readOrWriteTimeout": "5000000",
         "type": 0,
         "noClientsDuration": 60000,
         "url": "rtsp://admin:js123456@192.168.0.242:554/1/1",
